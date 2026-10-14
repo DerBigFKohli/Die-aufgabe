@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Felix Kohlroser – Persönliche Webseite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* CSS-Variablen */
+    :root {
+      --primary: #005a9c;
+      --primary-dark: #003e6b;
+      --primary-light: #e6f0fa;
+      --bg: #f1f5f9;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #cbd5e1;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+      --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.12), 0 4px 6px -4px rgba(0, 0, 0, 0.08);
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Header & Navigation */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #ffffff;
+      padding: 2.5rem 1.5rem 2rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    header p.subtitle {
+      font-size: 1.1rem;
+      color: #dbeafe;
+      margin-bottom: 1.5rem;
+    }
+
+    nav {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.4rem 0.9rem;
+      border-radius: 9999px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    nav a:hover {
+      background-color: #ffffff;
+      color: var(--primary);
+    }
+
+    /* Hauptinhalt */
+    main {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--primary-light);
+      padding-bottom: 0.4rem;
+      position: relative;
+    }
+
+    h2::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 50px;
+      height: 2px;
+      background-color: var(--primary);
+    }
+
+    /* Flexbox Layout für Karten */
+    .karten-container {
+      display: flex;
+      gap: 1rem;
+    }
+
+    /* Eigene Klasse mit Box-Modell: padding, margin, border */
+    .karte {
+      background-color: var(--card-bg);
+      flex: 1;
+      padding: 1.5rem;
+      margin: 0.5rem 0;
+      border: 2px solid var(--border-color);
+      border-top: 4px solid var(--primary);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .karte:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .karte h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: var(--primary-dark);
+    }
+
+    .karte p {
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    /* Bild-Styling */
+    .profil-bild {
+      width: 100%;
+      max-height: 280px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Ungeordnete Liste */
+    .interessen-liste {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .interessen-liste li {
+      position: relative;
+      padding: 0.6rem 0.6rem 0.6rem 2rem;
+      border-bottom: 1px dashed var(--border-color);
+      color: var(--text);
+    }
+
+    .interessen-liste li:last-child {
+      border-bottom: none;
+    }
+
+    .interessen-liste li::before {
+      content: "✔";
+      position: absolute;
+      left: 0.5rem;
+      top: 0.6rem;
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    /* Kontakt & Badges */
+    .badge {
+      display: inline-block;
+      background-color: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      margin-right: 0.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #ffffff;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Media Query für kleine Bildschirme (unter 700px) */
+    @media (max-width: 700px) {
+      .karten-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      header h1 {
+        font-size: 1.75rem;
+      }
+
+      main {
+        padding: 0 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Felix Kohlroser</h1>
+    <p class="subtitle">Schüler am BRG Kepler &amp; angehender Webentwickler</p>
+    <nav>
+      <ul>
+        <li><a href="#ueber-mich">Über mich</a></li>
+        <li><a href="#hobbys">Hobbys &amp; Interessen</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hauptinhalt -->
+  <main>
+    <!-- Abschnitt 1: Über mich -->
+    <section id="ueber-mich">
+      <h2>Über mich</h2>
+      <div class="karten-container">
+        <div class="karte">
+          <img class="profil-bild" src="bild.png" alt="Gavial-Krokodil mit roter Schleife und Wangenröte als humorvolles Profilbild">
+          <h3>Willkommen auf meiner Webseite!</h3>
+          <p>
+            Hallo! Mein Name ist Felix Kohlroser und ich besuche das BRG Kepler in Graz. Ich habe eine große Begeisterung für moderne Informationstechnologie, das Entwickeln nützlicher Software und das Verstehen von komplexen Systemen.
+          </p>
+          <p>
+            Im Rahmen des Informatikunterrichts im Modul IT-20 lernen wir fundierte Grundlagen der Webentwicklung. Es macht mir besonders viel Spaß zu sehen, wie aus einfachen HTML-Tags und modernem CSS eine ansprechende, interaktive Benutzeroberfläche entsteht, die auf allen Geräten reibungslos funktioniert.
+          </p>
+        </div>
+
+        <div class="karte">
+          <h3>Meine Schwerpunkte &amp; Motivation</h3>
+          <p>
+            Programmieren bedeutet für mich, kreative Ideen in die Realität umzusetzen und logische Herausforderungen Schritt für Schritt zu lösen. Besonders faszinieren mich die Möglichkeiten des Webs: Von responsiven Websites über moderne Webapplikationen bis hin zu smarten APIs.
+          </p>
+          <p>
+            Neben den theoretischen Grundlagen in der Schule arbeite ich kontinuierlich an eigenen kleinen Experimenten, um neue Frameworks kennenzulernen und sauberen, wartbaren Code zu schreiben.
+          </p>
+          <div style="margin-top: 1rem;">
+            <span class="badge">HTML5</span>
+            <span class="badge">CSS3</span>
+            <span class="badge">JavaScript</span>
+            <span class="badge">Python</span>
+            <span class="badge">Git &amp; GitHub</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Abschnitt 2: Hobbys & Interessen -->
+    <section id="hobbys">
+      <h2>Meine Hobbys &amp; Interessen</h2>
+      <div class="karten-container">
+        <div class="karte">
+          <h3>Was mich in meiner Freizeit begeistert</h3>
+          <p>
+            Ein guter Ausgleich zur Schule und zum Bildschirm ist mir sehr wichtig. In meiner Freizeit widme ich mich daher mit großer Begeisterung kreativen Projekten, Büchern und der Natur:
+          </p>
+          <ul class="interessen-liste">
+            <li><strong>Künstlerisch beschäftigen:</strong> Zeichnen, Malen und kreatives Gestalten – vom Skizzieren auf Papier bis hin zu digitalen Zeichnungen.</li>
+            <li><strong>Lesen:</strong> Spannende Bücher, Romane und informative Sachberichte, um in neue Welten einzutauchen und neue Perspektiven kennenzulernen.</li>
+            <li><strong>Wandern:</strong> Draußen in den Bergen und Wäldern unterwegs sein, die Ruhe der Natur genießen und neue Wanderrouten erkunden.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Abschnitt 3: Kontakt -->
+    <section id="kontakt">
+      <h2>Kontakt &amp; Austausch</h2>
+      <div class="karten-container">
+        <div class="karte">
+          <h3>Austausch &amp; Vernetzung</h3>
+          <p>
+            Ich freue mich immer über fachlichen Austausch rund um Webentwicklung, Schulinformatik oder gemeinsame Projektideen. Du kannst dir meinen Code und meine Übungen jederzeit in diesem GitHub-Repository ansehen.
+          </p>
+          <p>
+            Dieses Projekt wurde im Rahmen des Moduls <em>IT-20 Web-Grundlagen</em> am BRG Kepler erstellt.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Felix Kohlroser · Erstellt für IT-20 Web-Grundlagen am BRG Kepler</p>
+    <p><a href="#ueber-mich">&uarr; Zurück nach oben</a></p>
+  </footer>
+
+</body>
+</html>
